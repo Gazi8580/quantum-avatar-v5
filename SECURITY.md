@@ -8,10 +8,11 @@ This project does not provide long-term support guarantees. Security fixes are a
 
 Please do **not** open public issues for security problems.
 
-- Email: security@example.com (replace with a real address)
+- Email: <security@example.com> (replace with a real address)
 - Alternatively: open a **private** GitHub Security Advisory (if enabled) under the repo's Security tab.
 
 Include:
+
 - A clear description of the issue
 - Steps to reproduce (if applicable)
 - Impact assessment
