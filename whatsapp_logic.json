@@ -1,0 +1,8 @@
+{  
+  "greetings": {  
+    "morning": "Guete Morge! ?? Hol dir deine frischen Frchte fr den Tag - als Stammkunde sparst du ab sofort bei jedem Einkauf in Amriswil!",  
+    "afternoon": "Grezi! Hunger? ?? Unsere Metzgerei hat heute Mittag zartes Lamm bereit. Hol es dir zum Stammkunden-Preis!",  
+    "evening": "Sch”nen Feierabend! ?? Zeit fr ein gemtliches Nachtessen. Wir haben noch frisches Gemse und Fleisch fr dich reduziert. Sammle jetzt deine Punkte!"  
+  },  
+  "points_check": "Wenn Punkte >= 500, sende Gutschein-Nachricht."  
+} 
