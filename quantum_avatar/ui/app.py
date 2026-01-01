@@ -30,7 +30,7 @@ def generate_image():
     data = request.json
     prompt = data.get("prompt", "Default image")
     # In reality, generate and return image path or base64
-    image = image_gen.generate_image(prompt)
+    image_gen.generate_image(prompt)
     return jsonify({"image": "Generated"})
 
 

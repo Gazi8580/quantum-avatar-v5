@@ -65,7 +65,7 @@ def simulate_autonomous_decision(state):
         # Integration mit Business und Vision
         business.earn_points("customer1", 20)  # Punkte für Teilnahme
         if image_gen:
-            image = image_gen.generate_fleischtheke_poster(0.5, "Grill-Aroma")
+            image_gen.generate_fleischtheke_poster(0.5, "Grill-Aroma")
             print("Poster generiert für Grill-Pakete.")
         else:
             print("Vision Mock: Poster generiert.")
