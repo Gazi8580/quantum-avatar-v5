@@ -12,5 +12,9 @@ __pycache__/
 # VS Code
 .vscode/
 
+# Local helper scripts/artifacts
+lock_files.py
+project_locked.zip
+
 # Local upstream checkout (kept separate)
 spacy-transformers/
