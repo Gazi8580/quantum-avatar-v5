@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any
 
 try:
     from diffusers import StableDiffusionPipeline  # type: ignore
@@ -19,13 +20,23 @@ class ImageGenerator:
         self.pipe = None
         self.device = "cpu"
 
-        if torch is not None and hasattr(torch, "cuda") and torch.cuda.is_available():
+        if (
+            torch is not None
+            and hasattr(torch, "cuda")
+            and torch.cuda.is_available()
+        ):
             self.device = "cuda"
 
     def _ensure_loaded(self) -> bool:
         if self.pipe is not None:
             return True
         if StableDiffusionPipeline is None or torch is None:
+            return False
+
+        # Safety default: never download heavy models during normal unit tests
+        # or lightweight runs unless explicitly enabled.
+        enabled = os.getenv("QA_ENABLE_IMAGE_GEN")
+        if enabled not in {"1", "true", "TRUE", "yes", "YES"}:
             return False
 
         if os.getenv("HF_HUB_OFFLINE") in {"1", "true", "TRUE"}:
@@ -45,7 +56,8 @@ class ImageGenerator:
         if not self._ensure_loaded():
             return None
         assert self.pipe is not None
-        return self.pipe(prompt).images[0]
+        result: Any = self.pipe(prompt)
+        return result.images[0]
 
     def generate_fleischtheke_poster(self, freshness_score: float, theme: str):
         prompt = (

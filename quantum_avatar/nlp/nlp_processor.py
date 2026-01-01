@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Any
-
 try:
     import spacy  # type: ignore
 except Exception:  # pragma: no cover
@@ -33,14 +31,8 @@ class NLPProcessor:
             except Exception:
                 self.nlp = spacy.blank(language if language == "en" else "xx")
 
+        self._translator_model = "Helsinki-NLP/opus-mt-en-de"
         self.translator = None
-        if pipeline is not None:
-            try:
-                self.translator = pipeline(
-                    "translation", model="Helsinki-NLP/opus-mt-en-de"
-                )  # Example for EN-DE
-            except Exception:
-                self.translator = None
 
         self.speller = None
         if Speller is not None:
@@ -69,6 +61,17 @@ class NLPProcessor:
         }
 
     def translate(self, text, target_lang="de"):
+        if self.translator is None and pipeline is not None:
+            try:
+                self.translator = pipeline(
+                    "translation",
+                    model=self._translator_model,
+                )
+            except Exception:
+                self.translator = None
+
         if self.translator is None:
             return text
-        return self.translator(text, target_lang=target_lang)[0]["translation_text"]
+
+        result = self.translator(text, target_lang=target_lang)
+        return result[0]["translation_text"]
