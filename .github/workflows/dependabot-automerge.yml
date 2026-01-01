@@ -27,6 +27,12 @@ jobs:
         run: |
           gh pr review ${{ github.event.pull_request.number }} --approve --repo ${{ github.repository }}
 
+      - name: Update branch (best effort)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr update-branch ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --rebase || true
+
       - name: Enable auto-merge (squash)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
