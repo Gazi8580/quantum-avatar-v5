@@ -2,8 +2,9 @@
 
 ## Installation
 
-1. Python 3.13+ installieren (Docker nutzt 3.13).
-2. `python -m pip install -r requirements.txt`
+1. Python 3.13 installieren (Docker nutzt 3.13; 3.14 kann je nach spaCy/pydantic v1 Warnungen/Probleme verursachen).
+2. Optional (Windows): `py -3.13 -m venv .venv`
+3. Install: `python -m pip install -r requirements.txt`
 
 ## Start
 
